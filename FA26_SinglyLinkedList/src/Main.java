@@ -1,4 +1,7 @@
 
+import java.util.Scanner;
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -14,6 +17,14 @@ public class Main {
         myList.display();   
         System.out.println("Number of nodes: "
                 + myList.countNodes());
+        int x, pos;
+        System.out.print("Input x = ");
+        Scanner sn = new Scanner(System.in);
+        x = sn.nextInt();
+        System.out.print("Input pos = ");
+        pos=sn.nextInt();
+        myList.insertAtPos(x, pos);
+        myList.display();
                
     }
 }

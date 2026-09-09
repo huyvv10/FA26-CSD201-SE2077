@@ -42,7 +42,19 @@ public class SinglyLinkedList {
     }
     
     public void insertAtPos(int x, int pos){
-        
+        int n = countNodes();
+        if (pos<0 || pos>n) return;
+        if (pos==0) {addFirst(x); return;}
+        if (pos==n) {addLast(x); return;}
+        Node newNode = new Node(x);
+        int i=0;
+        Node cur=head;
+        while (i+1!=pos){
+            cur=cur.next;
+            i++;
+        }
+        newNode.next=cur.next;
+        cur.next=newNode;
     }
     public void display(){
         Node cur = head;
