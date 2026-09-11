@@ -56,6 +56,20 @@ public class SinglyLinkedList {
         newNode.next=cur.next;
         cur.next=newNode;
     }
+    
+    //Return node at position pos
+    public Node getNodeAtPos(int pos){
+        int n = countNodes();
+        if (pos<0 || pos>=n) return null;        
+        Node cur=head;
+        int i=0;
+        while (i!=pos){
+            cur=cur.next;
+            i++;
+        }
+        return cur;
+    }
+    
     public void display(){
         Node cur = head;
         while (cur!=null){
@@ -64,4 +78,5 @@ public class SinglyLinkedList {
         }
         System.out.println("");
     }
+    
 }
