@@ -11,6 +11,11 @@ public class Main {
         System.out.println("4. Count nodes");
         System.out.println("5. Add at pos");
         System.out.println("6. Get node at pos");
+        System.out.println("7. Get maximum value");
+        System.out.println("8. Get minimum value");
+        System.out.println("9. Edit value at pos");
+        System.out.println("10. Remove fist");
+        System.out.println("11. Remove last");
         System.out.println("0. Quit");
         System.out.print("Your selection: ");
     }
@@ -22,9 +27,13 @@ public class Main {
         myList.addFirst(2);
         myList.addFirst(0);
         myList.addFirst(5);
+        myList.addFirst(9);
+        myList.addFirst(4);
         myList.display();
         myList.addLast(3);
         myList.addLast(8);
+        myList.addLast(0);
+        myList.addLast(7);
         myList.display();
         int sel, x, pos;
         Scanner sn = new Scanner(System.in);
@@ -64,14 +73,33 @@ public class Main {
                     else
                         System.out.println("The position "+ pos+ " is out of range.");
                     break;
+                case 7:
+                    System.out.println("The maximum value: "
+                            + myList.getMaxValue());
+                    break;
+                case 8:
+                    System.out.println("The minimum value: "
+                            + myList.getMinValue());
+                    break;
+                case 9:
+                    System.out.print("Input new value: ");
+                    x = sn.nextInt();
+                    System.out.print("Input position to edit: ");
+                    pos = sn.nextInt();
+                    myList.editAtPos(x, pos); break;
+                case 10:
+                    System.out.println("Remove first");
+                    myList.removeFirst();
+                    myList.display(); break;
+                case 11:
+                    System.out.println("Remove last");
+                    myList.removeLast();
+                    myList.display(); break;
                 case 0:
                     break;
                 default:
                     System.out.println("Invalid selection.");
-
             }
-            
         }  while (sel != 0);
-
     }
 }
