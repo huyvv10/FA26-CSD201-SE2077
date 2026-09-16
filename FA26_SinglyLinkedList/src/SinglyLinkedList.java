@@ -128,8 +128,100 @@ public class SinglyLinkedList {
         tail=cur;
     }    
 
+    //Remove an element at the position pos
+    public void removeAtPos(int pos){
+        int n = countNodes();
+        if (pos<0 || pos>=n) return;
+        if (pos==0){
+            removeFirst(); return;
+        }
+        if (pos==n-1){
+            removeLast(); return;
+        }
+        int i=0;
+        Node cur=head;
+        while (i<pos-1){
+            i++;
+            cur=cur.next;            
+        }
+        cur.next=cur.next.next;
+    }
     
+    //Remove all elements with value as x
+    public void removeAll(int x){
+        if (isEmpty()) return;
+        while (head!=null && head.info==x){
+            removeFirst();
+        }
+        while (head!=null && tail.info==x) {            
+            removeLast();
+        }
+        Node cur=head;
+        while (cur!=null && cur.next!=null){
+            if (cur.next.info==x)
+                cur.next=cur.next.next;
+            else
+                cur=cur.next;
+        }
+    }
     
+    //Sort the list in ascending order
+    public void sortAsc(){
+        Node cur=head;
+        while (cur.next!=null){
+            Node p=cur.next;
+            while (p!=null){
+                if (cur.info>p.info){
+                    int tmp=p.info;
+                    p.info=cur.info;
+                    cur.info=tmp;
+                }
+                p=p.next;
+            }
+            cur=cur.next;
+        }
+    }
+    
+    //Sort the list in descending order
+    public void sortDesc(){
+        Node cur=head;
+        while (cur.next!=null){
+            Node p=cur.next;
+            while (p!=null){
+                if (cur.info<p.info){
+                    int tmp=p.info;
+                    p.info=cur.info;
+                    cur.info=tmp;
+                }
+                p=p.next;
+            }
+            cur=cur.next;
+        }        
+    }
+    
+    //Sort the list in range from [pos1, pos2]
+    //Keep the remain unchange
+    public void sortInRangeAsc(int pos1, int pos2){
+        int n=countNodes();
+        if (pos1<0 || pos1>=n || pos2<0 || pos2>=n) return;
+        int p1, p2;
+        p1= pos1<pos2 ? pos1 : pos2;
+        p2= pos1<pos2 ? pos2 : pos1;
+        
+        Node cur=getNodeAtPos(p1);
+        while (cur.next!=getNodeAtPos(p2).next){
+            Node p=cur.next;
+            while (p!=getNodeAtPos(p2).next){
+                if (cur.info>p.info){
+                    int tmp=p.info;
+                    p.info=cur.info;
+                    cur.info=tmp;
+                }
+                p=p.next;
+            }
+            cur=cur.next;
+        }       
+    }
     public void display(){
         Node cur = head;
         while (cur!=null){

@@ -16,6 +16,10 @@ public class Main {
         System.out.println("9. Edit value at pos");
         System.out.println("10. Remove fist");
         System.out.println("11. Remove last");
+        System.out.println("12. Remove at a specific position");
+        System.out.println("13. Remove all element with a specific value");
+        System.out.println("14. Sort the list in ascending order");
+        System.out.println("15. Sort the list in descending order");
         System.out.println("0. Quit");
         System.out.print("Your selection: ");
     }
@@ -23,6 +27,11 @@ public class Main {
     public static void main(String[] args) {
         SinglyLinkedList myList = new SinglyLinkedList();
         myList.addFirst(6);
+//        myList.addFirst(6);
+//        myList.addFirst(6);
+//        myList.addFirst(6);
+//        myList.addFirst(6);
+//        myList.addFirst(6);
         myList.addFirst(9);
         myList.addFirst(2);
         myList.addFirst(0);
@@ -33,6 +42,7 @@ public class Main {
         myList.addLast(3);
         myList.addLast(8);
         myList.addLast(0);
+        myList.addLast(6);
         myList.addLast(7);
         myList.display();
         int sel, x, pos;
@@ -94,6 +104,30 @@ public class Main {
                 case 11:
                     System.out.println("Remove last");
                     myList.removeLast();
+                    myList.display(); break;
+                case 12:
+                    System.out.println("Remove at a specific postion ");
+                    System.out.print("Input pos = ");
+                    pos=sn.nextInt();
+                    myList.removeAtPos(pos);
+                    myList.display(); break;
+                case 13:
+                    System.out.println("Remove all elements x");
+                    System.out.print("Input a value to remove: ");
+                    x = sn.nextInt();
+                    myList.removeAll(x);
+                    myList.display(); break;
+                case 14:
+                    System.out.println("Sort the list in ascending order");
+                    myList.sortAsc();
+                    myList.display();break;
+                case 15:
+                    System.out.println("Sort the list in descending order");
+                    myList.sortDesc();
+                    myList.display();break;
+                case 16:
+                    System.out.println("Sort in range");
+                    myList.sortInRangeAsc(2, 7);
                     myList.display(); break;
                 case 0:
                     break;
