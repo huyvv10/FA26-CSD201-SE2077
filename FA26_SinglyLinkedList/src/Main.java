@@ -20,6 +20,9 @@ public class Main {
         System.out.println("13. Remove all element with a specific value");
         System.out.println("14. Sort the list in ascending order");
         System.out.println("15. Sort the list in descending order");
+        System.out.println("16. Sort the list in range");
+        System.out.println("17. Get the position first found x");
+        System.out.println("18. Get the position the-k of a value");
         System.out.println("0. Quit");
         System.out.print("Your selection: ");
     }
@@ -129,6 +132,28 @@ public class Main {
                     System.out.println("Sort in range");
                     myList.sortInRangeAsc(2, 7);
                     myList.display(); break;
+                case 17:
+                    System.out.println("Get the first pos of node");
+                    System.out.print("Input searching number: ");
+                    x = sn.nextInt();
+                    pos = myList.getTheFirstPos(x);
+                    if (pos!=-1)
+                        System.out.println("The position first found "+x+" is: "+pos);
+                    else
+                        System.out.println("Find not found "+x +" in the list." );
+                    break;
+                case 18:
+                    System.out.println("Get the position the-k of an element");
+                    System.out.print("Input searching number: ");
+                    x = sn.nextInt();
+                    System.out.print("Input the-k: ");
+                    int k=sn.nextInt();
+                    pos=myList.getPositionTheK(x, k);
+                    if (pos!=-1)
+                        System.out.println("The position the-"+k+ " of " +x+" is: "+pos);
+                    else
+                        System.out.println("Find not found the position the-"+k+" of "+x +" in the list." );
+                    break;                    
                 case 0:
                     break;
                 default:

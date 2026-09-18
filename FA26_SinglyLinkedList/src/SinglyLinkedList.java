@@ -93,6 +93,8 @@ public class SinglyLinkedList {
         return min;
     }
     
+    
+    
     public void editAtPos(int newValue, int pos){
         int n = countNodes();
         if (pos<0 || pos>=n) return;
@@ -222,6 +224,40 @@ public class SinglyLinkedList {
             cur=cur.next;
         }       
     }
+    
+    //Return the position first found of an element x within the list
+    //Return -1 in case find not found.
+    public int getTheFirstPos(int x){
+        int i=0, pos=-1;
+        Node cur=head;
+        while (cur!=null){
+            if (cur.info==x){
+                pos=i; break;
+            }
+            i++;
+            cur=cur.next;
+        }
+        return pos;
+    }
+    
+    //Return the position the-k of an element x
+    //Return -1 in case find not found x or not enough elements
+    public int getPositionTheK(int x, int k){
+        int i=0, count=0, pos=-1;
+        Node cur=head;
+        while (cur!=null){
+            if (cur.info==x){
+                count++;
+                if (count==k){
+                    pos=i; break;
+                }
+            }
+            i++;
+            cur=cur.next;
+        }
+        return pos;
+    }
+    
     public void display(){
         Node cur = head;
         while (cur!=null){
