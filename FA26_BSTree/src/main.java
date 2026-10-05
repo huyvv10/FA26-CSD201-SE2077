@@ -35,9 +35,9 @@ public static void main(String[] args) {
         System.out.println("Right most node: "+
             myTree.findTheRightMostNode(myTree.getRoot()).data);
         System.out.println("Delete by Copying");
-        myTree.deleteByCopying(myTree.getRoot(), 10);
-        myTree.inOrder(myTree.getRoot());
-        System.out.println("");
+        myTree.setRoot(myTree.deleteByCopying(myTree.getRoot(), 10));
+        myTree.breadth_first_traversal();
+        
 }
 
 }
