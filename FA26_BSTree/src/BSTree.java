@@ -74,4 +74,138 @@ public class BSTree {
         }
         visit(p);
     }
+    
+    public void breadth_first_traversal(){
+        if (root==null) return;
+        Queue myQ = new Queue();
+        myQ.enqueue(root);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            visit(p);
+            myQ.dequeue();
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }
+    }
+    
+    //Node which has at least one child
+    public int countInternalNodes(){
+        int count=0;
+        if (root==null) return count;
+        Queue myQ = new Queue();
+        myQ.enqueue(root);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            if (p.left!=null || p.right!=null)
+                count++;
+            myQ.dequeue();
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }        
+        return count;
+    }
+    
+    //Count leaf node - no children
+    public int countExternalNodes(){
+        int count=0;
+        if (root==null) return count;
+        Queue myQ = new Queue();
+        myQ.enqueue(root);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            if (p.left==null && p.right==null)
+                count++;
+            myQ.dequeue();
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }        
+        return count;
+    }
+    
+    public int countNodesWithTwoChildren(Node xRoot){
+        int count=0, l=0, r=0;
+        if (xRoot==null) return 0;
+        if (xRoot.left!=null && xRoot.right!=null)
+            count++;
+        if (xRoot.left != null) {
+            l = countNodesWithTwoChildren(xRoot.left);
+        }
+        if (xRoot.right != null) {
+            r = countNodesWithTwoChildren(xRoot.right);
+        }       
+        return count+l+r;
+    }
+    
+    public int countNodesHasALeftChild(){
+        int count=0;
+        if (root==null) return count;
+        Queue myQ = new Queue();
+        myQ.enqueue(root);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            if (p.left!=null && p.right==null)
+                count++;
+            myQ.dequeue();
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }        
+        return count;
+    }
+    public int countNodesHasARightChild(){
+        int count=0;
+        if (root==null) return count;
+        Queue myQ = new Queue();
+        myQ.enqueue(root);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            if (p.left==null && p.right!=null)
+                count++;
+            myQ.dequeue();
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }        
+        return count;
+    }
+    
+    //Return the right most node of the left subtree
+    public Node findTheRightMostNode(Node p){
+        Node cur=p.left;
+        while (cur.right!=null){
+            cur=cur.right;
+        }
+        return cur;
+    }
+    
+    public Node deleteByCopying(Node xRoot, int x){
+        if (xRoot==null) return null;
+        if (x < xRoot.data){
+            xRoot.left = deleteByCopying(xRoot.left, x);
+        } else if (x > xRoot.data){
+            xRoot.right = deleteByCopying(xRoot.right, x);
+        } else {
+            if (xRoot.left==null && xRoot.right==null) return null;
+            //Case 1
+            if (xRoot.left!=null && xRoot.right==null)
+                return xRoot.left;
+            //Case 2
+            if (xRoot.left==null && xRoot.right!=null)
+                return xRoot.right;
+            //Case 3
+            Node nodeCopy = findTheRightMostNode(xRoot);
+            xRoot.data = nodeCopy.data;
+            xRoot.left = deleteByCopying(xRoot.left, nodeCopy.data);
+        }
+        return xRoot;
+    }
+    
 }
