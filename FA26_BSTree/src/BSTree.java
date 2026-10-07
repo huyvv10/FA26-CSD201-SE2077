@@ -248,5 +248,28 @@ public class BSTree {
         return xRoot;
     }
 
+    public Node deleteByMerging(Node root, int x){
+        if (root==null) return null;
+        if (x < root.data){
+            root.left = deleteByMerging(root.left, x);
+        } else if (x > root.data){
+            root.right = deleteByMerging(root.right, x);
+        } else {
+            //Case 1: leaf node
+            if (root.left==null && root.right==null) return null;
+            //Case 2: Only has a left child
+            if (root.left!=null && root.right==null)
+                return root.left;
+            //Case 3: Only has a right child
+            if (root.left==null && root.right!=null)
+                return root.right;
+            //Case 4: Has two children
+            Node mergeNode = findTheRightMostNode(root);
+            mergeNode.right=root.right;
+            return root.left;
+        }
+        return root;
+    }
+    
 
 }

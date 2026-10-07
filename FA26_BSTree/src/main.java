@@ -34,9 +34,14 @@ public static void main(String[] args) {
             myTree.countNodesHasARightChild());
         System.out.println("Right most node: "+
             myTree.findTheRightMostNode(myTree.getRoot()).data);
-        System.out.println("Delete by Copying");
-        myTree.setRoot(myTree.deleteByCopying(myTree.getRoot(), 10));
+//        System.out.println("Delete by Copying");
+//        myTree.setRoot(myTree.deleteByCopying(myTree.getRoot(), 10));
+//        myTree.breadth_first_traversal();
+        System.out.println("=== Delete by Merging ===");
+        myTree.setRoot(myTree.deleteByMerging(myTree
+                .getRoot(), 10));
         myTree.breadth_first_traversal();
+        System.out.println("");
         
 }
 
